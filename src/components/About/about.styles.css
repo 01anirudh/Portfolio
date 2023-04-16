@@ -1,6 +1,7 @@
 .paragraph{
     background-color: rgb(247, 247, 246);
-    padding: 5%;
+    padding: 2%;
+    border: solid black;
 }
 h1{
     text-align: center;
