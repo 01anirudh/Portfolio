@@ -231,7 +231,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
-  padding: 260px 0 100px 0;
+  padding: 170px 0 100px 0;
   background-image: url('./Assets/img/banner-bg.png');
   background-position: top center;
   background-size: cover;
@@ -310,7 +310,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: 64px;
   text-align: center;
   padding: 60px 50px;
-  margin-top: -60px;
+  margin-top: 40px;
 }
 .skill h2 {
 	font-size: 45px;
@@ -471,6 +471,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
   padding: 60px 0 200px 0;
 }
+
 .contact img {
   width: 92%;
 }
@@ -514,7 +515,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-top: 25px;
   border-radius: 0;
   position: relative;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 .contact form button span {
   z-index: 1;
@@ -536,4 +537,23 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .contact form button:hover::before {
   width: 100%;
+}
+
+
+.footer{
+  padding: 50px 0 0 0 ;
+  background-image: url(./Assets/img/footer-bg.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.footer img{
+  width: 28%;
+}
+.footer p{
+  font-weight: 400;
+  font-size: 14px;
+  color: #B8B8B8;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
 }

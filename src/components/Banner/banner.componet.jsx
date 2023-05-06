@@ -1,12 +1,13 @@
 import {Container,Row,Col} from "react-bootstrap";
-import {ArrowRightCircle} from "react-bootstrap-icons";
 import HeaderImg from "../../Assets/img/Profile.jpg";
 import { useState,useEffect } from "react";
+import  "animate.css";
+import TrackVisibility from 'react-on-screen';
 
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting,setIsDeleting] = useState(false);
-    const toRotate = ["Web Developer","Web Designer","C++ Programmer"]
+    const toRotate = ["React Developer","C++ Programmer"]
     const [text,setText] = useState('');
     const period = 2000;
     const [delta,setDelta] = useState(300 - Math.random() * 100);
@@ -16,6 +17,7 @@ export const Banner = () => {
             tick();
         },delta)
         return ()=>{clearInterval(ticker)};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[text])
 
     const tick = () =>{
@@ -41,10 +43,14 @@ export const Banner = () => {
             <Container>
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
-                        <span className="tagline">Welcome to my Protfolio</span>
-                        <h1>{`Hi I am Webdecoded`}<span className="wrap">{text}</span></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum in ab veniam dolores optio eveniet nesciunt quidem voluptates at voluptatem ipsum nulla, suscipit dolor, quia quibusdam sequi, dolore asperiores excepturi?</p>
-                        <button onClick={()=>console.log('connect')}>Let's Connect<ArrowRightCircle size={25}/></button>
+                        <TrackVisibility>
+                        {({isVisible})=>
+                        <div className={isVisible ? "animate_animated animate_fadeIn":""}>
+                        <span className="tagline">Welcome to my Portfolio</span>
+                        <h1>{`Hi I am Anirudh Kandwal! `}<span className="wrap">{text}</span></h1>
+                        <p>Frontend ReactJS developers create dynamic user interfaces using reusable components and declarative state management. Attention to detail, latest advancements, and optimization are crucial for delivering high-quality code.</p>
+                        </div>}
+                        </TrackVisibility>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
                         <img
