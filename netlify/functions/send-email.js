@@ -1,10 +1,4 @@
-const express = require("express");
-const cors = require("cors");
 const nodemailer = require("nodemailer");
-
-const app = express();
-app.use(cors());
-app.use(express.json());
 
 const contactEmail = nodemailer.createTransport({
   service: "gmail",
@@ -14,11 +8,10 @@ const contactEmail = nodemailer.createTransport({
   },
 });
 
-app.post("/.netlify/functions/contact", (req, res) => {
-  const name = req.body.firstName + " " + req.body.lastName;
-  const email = req.body.email;
-  const message = req.body.message;
-  const phone = req.body.phone;
+exports.handler = async (event) => {
+  const { firstName, lastName, email, phone, message } = JSON.parse(event.body);
+
+  const name = `${firstName} ${lastName}`;
 
   const mail = {
     from: name,
@@ -30,13 +23,16 @@ app.post("/.netlify/functions/contact", (req, res) => {
            <p>Message: ${message}</p>`,
   };
 
-  contactEmail.sendMail(mail, (error) => {
-    if (error) {
-      res.json(error);
-    } else {
-      res.json({ code: 200, status: "Message Sent" });
-    }
-  });
-});
-
-module.exports.handler = serverless(app);
+  try {
+    await contactEmail.sendMail(mail);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ code: 200, status: "Message Sent" }),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ code: 500, status: "Internal Server Error" }),
+    };
+  }
+};
