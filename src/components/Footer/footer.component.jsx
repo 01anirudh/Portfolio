@@ -9,6 +9,12 @@ export const Footer = () =>{
         <footer className="footer">
             <Container>
             <Row className="align-item-center">
+                <Col>
+                    <div>
+                        <p>Contact : 9458367514</p>
+                        <p>Email   : anirudhkandwal123@gmail.com</p>
+                    </div>
+                </Col>
                 <Col  className="text-center">
                     <div className="social-icon">
                     <a href="https://www.facebook.com/anirudh.kandwal"><img src={navIcon1} alt="" /></a>
