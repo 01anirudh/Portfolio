@@ -48,7 +48,8 @@ export const Banner = () => {
                         <div className={isVisible ? "animate_animated animate_fadeIn":""}>
                         <span className="tagline">Welcome to my Portfolio</span>
                         <h1>{`Hi I am Anirudh Kandwal! `}<span className="wrap">{text}</span></h1>
-                        <p>Frontend ReactJS developers create dynamic user interfaces using reusable components and declarative state management. Attention to detail, latest advancements, and optimization are crucial for delivering high-quality code.</p>
+                        <p>M.Tech Student in Computer Science and Engineering<br></br>
+                        Indian Institute of Technology Patna.<br></br> Frontend ReactJS developers create dynamic user interfaces using reusable components and declarative state management. Attention to detail, latest advancements, and optimization are crucial for delivering high-quality code.</p>
                         </div>}
                         </TrackVisibility>
                     </Col>

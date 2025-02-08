@@ -14,7 +14,7 @@ export const Footer = () =>{
                         <p>Contact : 9458367514</p>
                         <p>Email   : anirudhkandwal123@gmail.com</p>
                     </div>
-                </Col>
+               </Col>
                 <Col  className="text-center">
                     <div className="social-icon">
                     <a href="https://www.linkedin.com/in/anirudh-kandwal-96567520b/"><img src={navIcon1} alt="" /></a>
