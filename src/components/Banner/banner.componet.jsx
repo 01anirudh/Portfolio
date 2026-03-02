@@ -9,7 +9,7 @@ export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     // 🎓 LESSON: Array of strings the typing animation rotates through
-    const toRotate = ["React Developer", "C++ Programmer", "ML Enthusiast"]
+    const toRotate = ["FullStack Developer", "C++ Programmer", "ML Enthusiast"]
     const [text, setText] = useState('');
     const period = 2000;
     const [delta, setDelta] = useState(300 - Math.random() * 100);
