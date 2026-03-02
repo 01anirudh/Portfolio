@@ -6,7 +6,6 @@ import navIcon1 from "../../Assets/img/linkdin.svg";
 import navIcon2 from "../../Assets/img/fb.svg";
 import navIcon3 from "../../Assets/img/insta.svg";
 import navIcon4 from "../../Assets/img/github.svg";
-import Logo from "../../Assets/img/logo.png";
 import { HashLink } from 'react-router-hash-link';
 import {
   BrowserRouter as Router
@@ -40,7 +39,24 @@ export const Navigation = () => {
       <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
         <Container>
           <Navbar.Brand href="/">
-            <img  src={Logo} alt="Logo" />
+            <svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#6c63ff" />
+                  <stop offset="100%" stopColor="#f857a6" />
+                </linearGradient>
+              </defs>
+              <text
+                x="4" y="27"
+                fontFamily="'Centra', 'Georgia', serif"
+                fontStyle="italic"
+                fontWeight="600"
+                fontSize="26"
+                fill="url(#logo-grad)"
+                letterSpacing="1"
+              >Anirudh</text>
+              <line x1="4" y1="32" x2="116" y2="32" stroke="url(#logo-grad)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+            </svg>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <span className="navbar-toggler-icon"></span>

@@ -1,19 +1,46 @@
+/* ============================================================
+   🎨 CUSTOM FONTS
+   ============================================================ */
 @font-face {
-	font-family: Centra;
-	src: url('./Assets/font/CentraNo2-Bold.ttf');
-	font-weight: 700;
-}
-@font-face {
-	font-family: Centra;
-	src: url('./Assets/font/CentraNo2-Medium.ttf');
-	font-weight: 500;
-}
-@font-face {
-	font-family: Centra;
-	src: url('./Assets/font/CentraNo2-Book.ttf');
-	font-weight: 400;
+  font-family: Centra;
+  src: url('./Assets/font/CentraNo2-Bold.ttf');
+  font-weight: 700;
 }
 
+@font-face {
+  font-family: Centra;
+  src: url('./Assets/font/CentraNo2-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Centra;
+  src: url('./Assets/font/CentraNo2-Book.ttf');
+  font-weight: 400;
+}
+
+/* ============================================================
+   🎨 DESIGN TOKENS — CSS Custom Properties
+   Change values here to retheme the entire site.
+   ============================================================ */
+:root {
+  --bg: #050913;
+  --surface: #0d1427;
+  --surface2: #111935;
+  --accent: #6c63ff;
+  --accent2: #f857a6;
+  --accent3: #23d5ab;
+  --accent-glow: rgba(108, 99, 255, 0.4);
+  --text: #e8eaf6;
+  --muted: #8892b0;
+  --border: rgba(108, 99, 255, 0.25);
+  --grad: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  --grad-teal: linear-gradient(135deg, var(--accent) 0%, var(--accent3) 100%);
+}
+
+/* ============================================================
+   🔄 RESET & BOX MODEL
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -28,19 +55,27 @@ html {
 body {
   font-weight: 400;
   overflow-x: hidden;
-  position: relative;
-  background-color: #121212 !important;
-  color: #fff !important;
-  font-family: 'Centra', sans-serif !important;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Centra', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   line-height: normal;
 }
 
-p, a, li, button, ul {
+p,
+a,
+li,
+button,
+ul {
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -56,466 +91,965 @@ img {
   height: auto;
 }
 
-
-
 button {
   border: 0;
   background-color: transparent;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
-@media (min-width:1700px) {
-	main .container {
-		max-width: 100%;
-		padding: 0 150px;
-	}
-}
-
 p.success {
-	color: green;
+  color: #4ade80;
 }
 
 p.danger {
-	color: red;
+  color: #f87171;
 }
-/************ Navbar Css ************/
+
+@media (min-width: 1700px) {
+  main .container {
+    max-width: 100%;
+    padding: 0 150px;
+  }
+}
+
+/* ============================================================
+   🧊 NAVBAR — glassmorphism
+   ============================================================ */
 nav.navbar {
-  padding: 18px 0;
+  padding: 16px 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 9999;
-  transition:  0.32s ease-in-out;
+  transition: all 0.4s ease;
+  background: transparent;
 }
+
 nav.navbar.scrolled {
-  padding: 0px 0;
-  background-color: #121212;
+  background: rgba(5, 9, 19, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 40px rgba(108, 99, 255, 0.08);
+  padding: 10px 0;
 }
+
 nav.navbar a.navbar-brand {
-    width: 9%;
+  width: 9%;
 }
+
 nav.navbar .navbar-nav .nav-link.navbar-link {
-  font-weight: 400;
-  color: #fff !important;
+  font-weight: 500;
+  color: var(--text) !important;
   letter-spacing: 0.8px;
   padding: 0 25px;
-  font-size: 18px;
-  opacity: 0.75;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  position: relative;
 }
-nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
+
+/* Animated underline on active/hover nav links */
+nav.navbar .navbar-nav .nav-link.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 25px;
+  right: 25px;
+  height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+nav.navbar .navbar-nav a.nav-link.navbar-link:hover {
+  opacity: 1;
+}
+
+nav.navbar .navbar-nav a.nav-link.navbar-link:hover::after {
+  transform: scaleX(1);
+}
+
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
-    opacity: 1;
+  opacity: 1;
 }
+
+nav.navbar .navbar-nav a.nav-link.navbar-link.active::after {
+  transform: scaleX(1);
+}
+
 span.navbar-text {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
+
 .social-icon {
-    display: inline-block;
-    margin-left: 14px;
+  display: inline-block;
+  margin-left: 14px;
 }
+
 .social-icon a {
-    width: 42px;
-    height: 42px;
-    background: rgba(217, 217, 217, 0.1);
-    display: inline-flex;
-    border-radius: 50%;
-    margin-right: 6px;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 40px;
+  height: 40px;
+  background: rgba(108, 99, 255, 0.08);
+  display: inline-flex;
+  border-radius: 50%;
+  margin-right: 6px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
-.social-icon a::before {
-    content: "";
-    width: 42px;
-    height: 42px;
-    position: absolute;
-    background-color: #ffffff;
-    border-radius: 50%;
-    transform: scale(0);
-	transition: 0.3s ease-in-out;
+
+.social-icon a:hover {
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 0 18px var(--accent-glow);
+  transform: translateY(-3px);
 }
-.social-icon a:hover::before {
-    transform: scale(1);
-}
+
 .social-icon a img {
-	width: 40%;
-	z-index: 1;
-	transition: 0.3s ease-in-out;
-}
-.social-icon a:hover img {
-	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
-}
-.navbar-text button {
-  font-weight: 700;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 18px 34px;
-  font-size: 18px;
-  margin-left: 18px;
-	position: relative;
-	background-color: transparent;
-	transition: 0.3s ease-in-out;
-}
-.navbar-text button span {
+  width: 40%;
   z-index: 1;
 }
-.navbar-text button::before {
-  content: "";
-  width: 0%;
-  height: 100%;
-  position: absolute;
-  background-color: #fff;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  transition: 0.3s ease-in-out;
+
+.social-icon a:hover img {
+  filter: brightness(0) invert(1);
 }
+
+.navbar-text button {
+  font-weight: 700;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 28px;
+  font-size: 15px;
+  margin-left: 18px;
+  background: rgba(108, 99, 255, 0.08);
+  transition: all 0.3s ease;
+  border-radius: 50px;
+}
+
 .navbar-text button:hover {
-  color: #121212;
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 0 24px var(--accent-glow);
+  transform: translateY(-2px);
+  color: #fff;
 }
-.navbar-text button:hover::before {
-	content: "";
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
+
+/* Hamburger icon */
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
-	outline: none;
-    box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
+
 nav.navbar .navbar-toggler-icon {
   width: 24px;
   height: 17px;
   background-image: none;
   position: relative;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--text);
   transition: all 300ms linear;
   top: -2px;
 }
-nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
-}
+
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
-	width: 24px;
-	position: absolute;
-	height: 2px;
-	background-color: #fff;
-	top: 0;
-	left: 0;
-	content: '';
-	z-index: 2;
-	transition: all 300ms linear;
+  width: 24px;
+  position: absolute;
+  height: 2px;
+  background-color: var(--text);
+  top: 0;
+  left: 0;
+  content: '';
+  z-index: 2;
+  transition: all 300ms linear;
 }
+
 nav.navbar .navbar-toggler-icon:after {
-	top: 8px;
+  top: 8px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-	transform: rotate(45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: rotate(45deg);
+  height: 2px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-	transform: translateY(8px) rotate(-45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: translateY(8px) rotate(-45deg);
+  height: 2px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-	border-color: transparent;
+  border-color: transparent;
 }
 
-@media (max-width:800px){
-  .navbar-text button {
-   
-    padding: 12px 30px;
-    font-size: 18px;
-    font-size: 13px;
-}
-}
-@media (max-width: 800px) {
-.align-items-center {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    /* optional */
-    -webkit-box-align: start;
-    -moz-box-align: start;
-    -ms-flex-align: start;
-    -webkit-align-items: flex-start;
-    align-items: flex-start;
-  }
-
-
- .align-items-center .first {
-    -webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    -ms-flex-order: 2;
-    -webkit-order: 2;
-    order: 2;
-  }
-
-  .align-items-center .second {
-    -webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    -ms-flex-order: 1;
-    -webkit-order: 1;
-    order: 1;
-  }
-  .banner img{
-    border-radius: 50%;
-  margin-left: 25%;
-  margin-bottom: 20%;
-  width: 180px;
-  }
-  .navbar-brand img{
-    width:100px
-  }
-
-}
-
-/************ Banner Css ************/
+/* ============================================================
+   🌊 BANNER / HERO
+   ============================================================ */
 .banner {
   margin-top: 0;
-  padding: 170px 0 100px 0;
-  background-image: url('./Assets/img/banner-bg.png');
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.banner .tagline {
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  padding: 8px 10px;
-  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  font-size: 20px;
-  margin-bottom: 16px;
-  display: inline-block;
-}
-.banner h1 {
-  font-size: 65px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  line-height: 1;
-  margin-bottom: 20px;
-  display: block;
-}
-.banner p {
-  color: #B8B8B8;
-  font-size: 18px;
-  letter-spacing: 0.8px;
-  line-height: 1.5em;
-  width: 96%;
-}
-.banner button {
-  color: #fff;
-  font-weight: 700;
-  font-size: 20px;
-  margin-top: 60px;
-  letter-spacing: 0.8px;
+  padding: 0;
+  background-color: var(--bg);
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
   display: flex;
   align-items: center;
 }
-.banner button svg {
-  font-size: 25px;
-  margin-left: 10px;
-  transition: 0.3s ease-in-out;
-  line-height: 1;
-}
-.banner button:hover svg {
-  margin-left: 25px;
-}
-.banner img {
-  /* animation: updown 3s linear infinite; */
-  border-radius: 50%;
-  
-}
-/* @keyframes updown {
-    0% {
-        transform: translateY(-20px);
-    }
-    50% {
-        transform: translateY(20px);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
-}
-*/
-.txt-rotate > .wrap { 
-  border-right: 0.08em solid #666;
+
+/* Subtle grid overlay — gives a "tech" feel */
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108, 99, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 99, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/************ Skills Css ************/
-.skill {
-  padding: 0 0 50px 0;
+/* ── Animated Blobs ── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.18;
+  /* reduced so blobs don’t wash out foreground text */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-1 {
+  width: 560px;
+  height: 560px;
+  background: var(--accent);
+  top: -140px;
+  left: -180px;
+  animation: float-blob 14s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 420px;
+  height: 420px;
+  background: var(--accent2);
+  bottom: -100px;
+  right: -120px;
+  animation: float-blob 18s ease-in-out infinite reverse;
+}
+
+.blob-3 {
+  width: 320px;
+  height: 320px;
+  background: var(--accent3);
+  top: 55%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  animation: float-blob 22s ease-in-out infinite 4s;
+}
+
+@keyframes float-blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(30px, -40px) scale(1.06);
+  }
+
+  50% {
+    transform: translate(-25px, 30px) scale(0.94);
+  }
+
+  75% {
+    transform: translate(20px, 20px) scale(1.03);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.banner .container,
+.banner .container-fluid {
   position: relative;
+  z-index: 1;
+  padding-left: 5%;
+  padding-right: 5%;
 }
-.skill-bx {
-  background: #151515;
-  border-radius: 64px;
-  text-align: center;
-  padding: 60px 50px;
-  margin-top: 40px;
+
+/* Make the banner row stretch full height */
+.banner .container-fluid>.row {
+  min-height: 100vh;
+  align-items: center;
 }
-.skill h2 {
-	font-size: 45px;
-	font-weight: 700;
+
+/* Full-width fluid container padding for all sections */
+.skill .container-fluid,
+.project .container-fluid,
+.contact .container-fluid {
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
 }
-.skill p {
-    color: #B8B8B8;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    line-height: 1.5em;
-    margin: 14px 0 75px 0;
+
+.banner .tagline {
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 26px;
+  background: rgba(108, 99, 255, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: clamp(13px, 1.1vw, 16px);
+  margin-bottom: 32px;
+  display: inline-block;
+  color: var(--accent);
 }
-.skill-slider {
-  width: 80%;
+
+.banner h1 {
+  font-size: clamp(52px, 6.5vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  display: block;
+  color: #ffffff;
+}
+
+/* Gradient animated typed text */
+.banner h1 .wrap {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-right: 3px solid var(--accent2);
+  padding-right: 4px;
+}
+
+.banner p {
+  color: #c8cfe0;
+  font-size: clamp(16px, 1.5vw, 22px);
+  letter-spacing: 0.4px;
+  line-height: 1.8em;
+  width: 90%;
+}
+
+.banner button {
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 44px;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 36px;
+  border-radius: 50px;
+  background: var(--grad);
+  box-shadow: 0 0 30px var(--accent-glow);
+  transition: all 0.3s ease;
+  gap: 8px;
+}
+
+.banner button:hover {
+  box-shadow: 0 0 50px var(--accent-glow);
+  transform: translateY(-3px);
+  letter-spacing: 0.8px;
+}
+
+.banner button svg {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+.banner button:hover svg {
+  transform: translateX(6px);
+}
+
+/* Profile image — perfectly round, contained, centred */
+.banner img {
+  border-radius: 50%;
+  border: 4px solid rgba(108, 99, 255, 0.5);
+  box-shadow:
+    0 0 0 12px rgba(108, 99, 255, 0.08),
+    0 0 60px rgba(108, 99, 255, 0.4),
+    0 0 120px rgba(248, 87, 166, 0.2);
+  width: clamp(280px, 30vw, 460px);
+  height: clamp(280px, 30vw, 460px);
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
   margin: 0 auto;
+}
+
+.txt-rotate>.wrap {
+  border-right: 0.08em solid var(--accent2);
+}
+
+/* ── Col layout for profile image ── */
+.banner .col-xl-5,
+.banner .col-md-6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   🌊 WAVE / SECTION TRANSITION DIVIDERS
+   These are full-width SVG waves placed between sections.
+   The wave colour matches the NEXT section's background so
+   the transition looks seamless — like the page is "melting"
+   from one section into the next.
+   ============================================================ */
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
   position: relative;
+  z-index: 2;
+  /* background set inline in App.js to match the section above */
+  background: transparent;
 }
-.skill-slider .item img {
-  width: 50%;
-  margin: 0 auto 15px auto;
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+  /* taller for more drama */
 }
+
+/* ── Back shadow layer — slow drift animation ──
+   Creates the illusion the wave is gently breathing/moving.   
+   Only the back path gets this via the .wave-layer-back class. */
+.wave-layer-back {
+  animation: wave-drift 8s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+@keyframes wave-drift {
+  0% {
+    transform: translateX(0px) scaleY(1);
+  }
+
+  50% {
+    transform: translateX(-30px) scaleY(0.95);
+  }
+
+  100% {
+    transform: translateX(20px) scaleY(1.05);
+  }
+}
+
+/* ── Section Divider ── */
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: var(--grad);
+  border-radius: 4px;
+  margin: 0 auto 40px auto;
+}
+
+/* ============================================================
+   ⚡ SKILLS — Infinite Marquee Slideshow
+   ============================================================ */
+.skill {
+  padding: 60px 0 100px 0;
+  position: relative;
+  /* Slightly lighter than --bg (#050913) so wave boundaries are visible */
+  background: #0d1427;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.skill-bx {
+  background: rgba(13, 20, 39, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 60px 50px 52px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+  /* Top glow line */
+  box-shadow:
+    0 1px 0 0 var(--accent),
+    inset 0 0 80px rgba(108, 99, 255, 0.03);
+}
+
+/* Decorative corner glow inside the box */
+.skill-bx::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: var(--accent);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.skill h2 {
+  font-size: 48px;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.skill p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6em;
+  margin: 0 auto 48px auto;
+  max-width: 500px;
+}
+
+/* ── Marquee (Infinite Ticker) ──────────────────────────────
+   The wrapper clips the overflowing track.
+   The track is a wide flex row that animates leftward.
+   We use mask (gradient fade) on edges for a polished look.
+   ─────────────────────────────────────────────────────────── */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  /* Fade out edges with a CSS mask so cards smoothly disappear */
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  /* Expands to fit all cards in one line */
+  /* Apply the scrolling animation */
+  animation: marquee-scroll 28s linear infinite;
+}
+
+/* Pause on hover — great UX for users who want to read */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* The keyframe: slide left by exactly 50% of the total width.
+   Since we duplicated the cards, 50% = one full set of cards.
+   When it reaches -50%, it snaps back to 0 — seamless loop! */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Individual skill pill / card */
+.skill-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 28px;
+  min-width: 110px;
+  cursor: default;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  /* Prevent cards from squishing */
+}
+
+.skill-pill:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 22px var(--accent-glow);
+  transform: translateY(-5px);
+  background: rgba(108, 99, 255, 0.1);
+}
+
+.skill-pill img {
+  width: 46px !important;
+  height: 46px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 5px rgba(108, 99, 255, 0.3));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.skill-pill:hover img {
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+  transform: scale(1.1);
+}
+
+.skill-pill span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+  transition: color 0.3s ease;
+}
+
+.skill-pill:hover span {
+  color: var(--text);
+}
+
 .background-image-left {
   top: 28%;
   position: absolute;
   bottom: 0;
   width: 40%;
   z-index: -4;
+  opacity: 0.45;
+  mix-blend-mode: lighten;
 }
 
-/************ Projects Css ************/
+/* ============================================================
+   💼 PROJECTS
+   ============================================================ */
 .project {
-  padding: 80px 0;
+  padding: 100px 0;
   position: relative;
-  background-color: black;
+  /* Pure dark background — no gradient blob that washes out the text */
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
+
 .project h2 {
-	font-size: 45px;
-	font-weight: 700;
+  font-size: 48px;
+  font-weight: 700;
   text-align: center;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
 }
+
+.project>.container>.row>.col>p,
 .project p {
-  color: #B8B8B8;
-  font-size: 18px;
-  letter-spacing: 0.8px;
-  line-height: 1.5em;
-  margin: 14px auto 30px auto;
+  /* Brighter than var(--muted) so it reads clearly on dark bg */
+  color: #b0bcd4;
+  font-size: 17px;
+  line-height: 1.7em;
+  margin: 12px auto 50px auto;
   text-align: center;
-  width: 56%;
+  width: 60%;
 }
+
 .project .nav.nav-pills {
   width: 72%;
   margin: 0 auto;
   border-radius: 50px;
-  background-color: rgb(255 255 255 / 10%);
+  background-color: rgba(255, 255, 255, 0.04);
   overflow: hidden;
+  border: 1px solid var(--border);
 }
+
 .project .nav.nav-pills .nav-item {
   width: 33.33333%;
 }
+
 .project .nav.nav-pills .nav-link {
   background-color: transparent;
   border-radius: 0;
-  padding: 17px 0;
-  color: #fff;
+  padding: 16px 0;
+  color: var(--muted);
   width: 100%;
-  font-size: 17px;
-  letter-spacing: 0.8px;
+  font-size: 16px;
+  letter-spacing: 0.6px;
   font-weight: 500;
   position: relative;
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease;
   text-align: center;
   z-index: 0;
 }
+
 .project .nav.nav-pills .nav-link::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: var(--grad);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
 }
+
 .project .nav.nav-pills .nav-link.active::before {
-    width: 100% !important;
+  width: 100% !important;
 }
+
 .project .nav.nav-pills .nav-link.active {
-    border: 1px solid rgba(255, 255, 255, 1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
+
 .nav-link#projects-tabs-tab-first {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 55px 0px 0px 55px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 55px 0 0 55px;
 }
+
 .nav-link#projects-tabs-tab-second {
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
+
 .nav-link#projects-tabs-tab-third {
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0 55px 55px 0;
 }
+
+/* Project card */
 .proj-imgbx {
   position: relative;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
 }
+
+.proj-imgbx:hover {
+  box-shadow: 0 0 40px var(--accent-glow), 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-color: rgba(108, 99, 255, 0.5);
+}
+
+/* Project image — always darken slightly so light screenshots don't blind */
+.proj-imgbx img {
+  display: block;
+  /* Slightly darken light project images; does not affect dark ones much */
+  filter: brightness(0.88) saturate(0.9);
+  transition: filter 0.4s ease;
+}
+
+.proj-imgbx:hover img {
+  filter: brightness(0.5) saturate(0.7);
+  /* darken more so overlay text pops */
+}
+
+/* Always-on bottom scrim — dark gradient that sits permanently at the bottom
+   of every project card so there is always a dark area for text contrast.
+   This uses ::after (a SECOND pseudo-element — separate from the hover ::before). */
+.proj-imgbx::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  /* covers bottom half */
+  background: linear-gradient(to top,
+      rgba(5, 9, 19, 0.85) 0%,
+      /* very dark at bottom */
+      rgba(5, 9, 19, 0.3) 60%,
+      transparent 100%);
+  z-index: 1;
+  /* above image, below the hover overlay */
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Fade out the permanent scrim when hover overlay takes over */
+.proj-imgbx:hover::after {
+  opacity: 0;
+}
+
+/* HOVER overlay — solid gradient that slides up from bottom */
 .proj-imgbx::before {
   content: "";
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-  opacity: 0.85;
+  background: linear-gradient(175deg,
+      rgba(108, 99, 255, 0.97) 0%,
+      rgba(248, 87, 166, 0.97) 100%);
   position: absolute;
   width: 100%;
   height: 0;
-  transition: 0.4s ease-in-out;
+  bottom: 0;
+  left: 0;
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  /* above the always-on ::after scrim */
 }
+
 .proj-imgbx:hover::before {
   height: 100%;
 }
+
 .proj-txtx {
   position: absolute;
   text-align: center;
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 0.5s ease-in-out;
+  transition: all 0.45s ease;
   opacity: 0;
   width: 100%;
+  z-index: 3;
+  /* sits above both ::before and ::after pseudo-elements */
+  padding: 0 20px;
 }
+
 .proj-imgbx:hover .proj-txtx {
   top: 50%;
   opacity: 1;
 }
+
 .proj-txtx h4 {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 0.8px;
-  line-height: 1.1em;
+  letter-spacing: 0.5px;
+  line-height: 1.3em;
+  color: #fff;
+  margin-bottom: 6px;
+  /* Text shadow guarantees legibility even if overlay is semi-transparent */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
+
 .proj-txtx span {
   font-style: italic;
   font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0.8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
 }
+
+.proj-link-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition: all 0.25s ease;
+  text-decoration: none !important;
+}
+
+.proj-link-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* No-image placeholder — gradient fill for cards without a screenshot */
+.proj-img-placeholder {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #1a1060 0%, #3d0f33 50%, #0d1427 100%);
+  display: block;
+}
+
+/* ── List-style projects (no image) ── */
+.proj-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.proj-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(13, 20, 39, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 32px;
+  text-decoration: none !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.proj-list-item:hover {
+  border-color: var(--accent);
+  background: rgba(108, 99, 255, 0.08);
+  box-shadow: 0 0 28px var(--accent-glow);
+  transform: translateX(6px);
+}
+
+.proj-list-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proj-list-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(108, 99, 255, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 3px 12px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.proj-list-item h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.proj-list-item p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.proj-list-arrow {
+  font-size: 22px;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.proj-list-item:hover .proj-list-arrow {
+  transform: translateX(6px);
+}
+
+/* background-image-right: the color-sharp2.png blob.
+   Kept very low opacity so it adds a hint of colour
+   without creating the grey wash-out blob seen in the screenshot. */
 .background-image-right {
   top: 20%;
   position: absolute;
@@ -523,98 +1057,402 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 35%;
   right: 0;
   z-index: -4;
+  opacity: 0.12;
+  /* was 0.45 — that was causing the grey blob */
+  mix-blend-mode: screen;
+  /* screen blends more naturally on dark bgs */
 }
 
-/************ Projects Css ************/
+/* ============================================================
+   📬 CONTACT  — centred glass-card layout
+   ============================================================ */
 .contact {
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-  padding: 60px 0 200px 0;
+  background:
+    linear-gradient(135deg, #0f0b35 0%, #1a1060 35%, #3d0f33 70%, #1a0a20 100%);
+  padding: 100px 0 140px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-.contact img {
-  width: 92%;
-}
-.contact h2 {
-	font-size: 45px;
-	font-weight: 700;
-  margin-bottom: 30px;
-}
-.contact form input, .contact form textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  color: #fff;
-  margin: 0 0 8px 0;
-  padding: 18px 26px;
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.8px;
-  transition: 0.3s ease-in-out;
-}
-.contact form input:focus, .contact form textarea:focus {
-  background: rgba(255, 255, 255, 1);
-  color: #121212;
-}
-.contact form input::placeholder, .contact form textarea::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: #fff;
-}
-.contact form input:focus::placeholder, .contact form textarea:focus::placeholder {
-  color: #121212;
-  opacity: 0.8;
-}
-.contact form button {
-  font-weight: 700;
-  color: #000;
-  background-color: #fff;
-  padding: 14px 48px;
-  font-size: 18px;
-  margin-top: 25px;
-  border-radius: 0;
-  position: relative;
-  transition: 0.5s ease-in-out;
-}
-.contact form button span {
-  z-index: 1;
-  position: relative;
-}
-.contact form button:hover {
-  color: #fff;
-}
-.contact form button::before {
-  content: "";
-  background: #121212;
-  width: 0;
-  height: 100%;
+/* Purple glow orb top-left */
+.contact::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  transition: 0.3s ease-in-out;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  pointer-events: none;
 }
-.contact form button:hover::before {
+
+/* Pink glow orb bottom-right */
+.contact::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(248, 87, 166, 0.12) 0%, transparent 70%);
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.contact-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.contact-eyebrow {
+  display: inline-block;
+  padding: 6px 20px;
+  background: rgba(108, 99, 255, 0.15);
+  border: 1px solid rgba(108, 99, 255, 0.35);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.contact-header h2 {
+  font-size: 52px;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+.contact-subtitle {
+  color: #b0bcd4;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0 auto 28px auto;
+}
+
+/* Subtle dot grid overlay — gives the section depth without competing with the form */
+.contact::before {
+  /* override the purple orb with a dot-pattern + orb combined */
+  background:
+    radial-gradient(circle at 15% 25%, rgba(108, 99, 255, 0.25) 0%, transparent 45%),
+    radial-gradient(1.5px 1.5px at 20px 20px, rgba(255, 255, 255, 0.07) 0%, transparent 100%);
+  background-size: auto, 40px 40px;
+}
+
+/* ── Social quick-chips ── */
+.contact-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.contact-social-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+
+.contact-social-chip:hover {
+  background: rgba(108, 99, 255, 0.18);
+  border-color: rgba(108, 99, 255, 0.5);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.2);
+}
+
+/* ── Info card (left column) ── */
+.contact-info-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 36px 28px;
+  backdrop-filter: blur(12px);
+  height: 100%;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.info-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(108, 99, 255, 0.15);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.info-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 4px 0;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #d0d8f0;
+  margin: 0;
+  word-break: break-word;
+}
+
+.info-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 20px 0;
+}
+
+.info-note {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Glass card ── */
+.contact-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 48px 40px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(108, 99, 255, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(108, 99, 255, 0.2),
+    0 0 60px rgba(108, 99, 255, 0.06);
+}
+
+/* ── Field labels ── */
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+/* ── Inputs & textarea ── */
+.contact form input,
+.contact form textarea {
   width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  color: #fff;
+  padding: 14px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  transition: all 0.3s ease;
+  font-family: 'Centra', sans-serif;
+  outline: none;
 }
 
-
-.footer{
-  padding: 50px 0 0 0 ;
-  background-image: url(./Assets/img/footer-bg.png);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.contact form textarea {
+  resize: vertical;
+  min-height: 120px;
 }
-.footer img{
+
+.contact form input:focus,
+.contact form textarea:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(108, 99, 255, 0.7);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+}
+
+.contact form input::placeholder,
+.contact form textarea::placeholder {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Submit button ── */
+.contact-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0;
+  border-radius: 14px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 30px var(--accent-glow);
+  transition: all 0.3s ease;
+  font-family: 'Centra', sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-submit:hover {
+  box-shadow: 0 0 50px var(--accent-glow);
+  transform: translateY(-2px);
+  letter-spacing: 0.8px;
+}
+
+.contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Status messages ── */
+.contact p.success {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.contact p.danger {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ============================================================
+   🦶 FOOTER
+   ============================================================ */
+.footer {
+  padding: 50px 0 0 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.footer img {
   width: 28%;
 }
-.footer p{
+
+.footer p {
   font-weight: 400;
   font-size: 14px;
-  color: #B8B8B8;
+  color: var(--muted);
   letter-spacing: 0.5px;
   margin-top: 20px;
 }
 
+/* ============================================================
+   📱 RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 800px) {
+  .align-items-center {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  .align-items-center .first {
+    order: 2;
+  }
+
+  .align-items-center .second {
+    order: 1;
+  }
+
+  .banner {
+    padding: 120px 0 80px 0;
+  }
+
+  .banner h1 {
+    font-size: 38px;
+  }
+
+  .banner p {
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .banner img {
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 24px auto;
+  }
+
+  .navbar-brand img {
+    width: 100px;
+  }
+
+  .navbar-text button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .skill-bx {
+    padding: 40px 20px;
+  }
+
+  .skill h2 {
+    font-size: 36px;
+  }
+
+  .project p {
+    width: 90%;
+  }
+
+  .project h2 {
+    font-size: 36px;
+  }
+
+  .contact h2 {
+    font-size: 34px;
+  }
+
+  .contact {
+    padding: 60px 0 160px 0;
+  }
+}
