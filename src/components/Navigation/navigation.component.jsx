@@ -69,10 +69,10 @@ export const Navigation = () => {
             </Nav>
             <span className="navbar-text">
               <div className="social-icon">
-                <a href="https://www.linkedin.com/in/anirudh-kandwal-96567520b/"><img src={navIcon1} alt="" /></a>
-                <a href="https://www.facebook.com/anirudh.kandwal"><img src={navIcon2} alt="" /></a>
-                <a href="https://www.instagram.com/anirudhkandwal/"><img src={navIcon3} alt="" /></a>
-                <a href="https://github.com/01anirudh"><img src={navIcon4} alt="" /></a>
+                <a href="https://www.linkedin.com/in/anirudhkandwal/" target="_blank" rel="noreferrer"><img src={navIcon1} alt="" /></a>
+                <a href="https://www.facebook.com/anirudh.kandwal" target="_blank" rel="noreferrer"><img src={navIcon2} alt="" /></a>
+                <a href="https://www.instagram.com/anirudhkandwal/" target="_blank" rel="noreferrer"><img src={navIcon3} alt="" /></a>
+                <a href="https://github.com/01anirudh" target="_blank" rel="noreferrer"><img src={navIcon4} alt="" /></a>
               </div>
               <HashLink to='#connect'>
                 <button className="vvd"><span>Let’s Connect</span></button>
