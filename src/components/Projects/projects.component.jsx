@@ -16,7 +16,7 @@ const cardProjects = [
   },
   {
     title: "SkillNet",
-    description: "AI-powered skill assessment & learning platform",
+    description: "Professional social networking platform",
     imgUrl: projSkillNet,
     linkUrl: "https://github.com/01anirudh/SkillNet",
   },
