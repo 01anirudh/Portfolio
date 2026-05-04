@@ -1388,71 +1388,213 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /* ============================================================
    📱 RESPONSIVE — Mobile
    ============================================================ */
+
+/* ── Mobile navbar collapse — solid glass bg so it doesn't bleed into hero ── */
+@media (max-width: 991px) {
+  .navbar-collapse.show,
+  .navbar-collapse.collapsing {
+    background: rgba(5, 9, 19, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    padding: 12px 16px 20px 16px;
+    margin: 0 -12px;
+    border-radius: 0 0 16px 16px;
+  }
+}
+
+/* ── Banner: reorder image above text on small screens ── */
 @media (max-width: 800px) {
-  .align-items-center {
-    display: flex;
+  /* Scope the column reorder ONLY inside .banner so we don't
+     nuke Bootstrap's align-items-center utility everywhere */
+  .banner .row.align-items-center {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center !important;
   }
 
-  .align-items-center .first {
+  .banner .row.align-items-center .first {
     order: 2;
+    width: 100%;
+    text-align: center;
   }
 
-  .align-items-center .second {
+  .banner .row.align-items-center .second {
     order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
+  /* ── Banner ── */
   .banner {
-    padding: 120px 0 80px 0;
+    height: auto;
+    min-height: 100vh;
+    padding: 110px 0 60px 0;
   }
 
   .banner h1 {
-    font-size: 38px;
+    font-size: clamp(30px, 8vw, 42px);
+    text-align: center;
   }
 
   .banner p {
     font-size: 15px;
     width: 100%;
+    text-align: center;
+  }
+
+  .banner .tagline {
+    font-size: 12px;
+  }
+
+  .banner button {
+    margin: 28px auto 0 auto;
+    display: inline-flex;
   }
 
   .banner img {
-    max-width: 200px;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 24px auto;
+    width: clamp(160px, 50vw, 220px);
+    height: clamp(160px, 50vw, 220px);
+    margin: 0 auto 28px auto;
   }
 
-  .navbar-brand img {
-    width: 100px;
+  /* ── Navbar ── */
+  nav.navbar a.navbar-brand {
+    width: auto;
+  }
+
+  /* When the hamburger menu is open, stack social icons
+     and the Connect button vertically with breathing room */
+  .navbar-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0 8px 0;
+    width: 100%;
+  }
+
+  .social-icon {
+    margin-left: 0;
   }
 
   .navbar-text button {
-    padding: 10px 20px;
-    font-size: 13px;
+    margin-left: 0;
+    padding: 10px 22px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    display: block;
   }
 
+  /* Give nav links proper spacing in mobile dropdown */
+  nav.navbar .navbar-nav .nav-link.navbar-link {
+    padding: 10px 0;
+  }
+
+  nav.navbar .navbar-nav .nav-link.navbar-link::after {
+    left: 0;
+    right: 0;
+  }
+
+  /* ── Skills ── */
   .skill-bx {
-    padding: 40px 20px;
+    padding: 40px 16px;
   }
 
   .skill h2 {
     font-size: 36px;
   }
 
-  .project p {
-    width: 90%;
+  .skill p {
+    font-size: 15px;
   }
 
+  /* ── Projects ── */
   .project h2 {
     font-size: 36px;
   }
 
-  .contact h2 {
-    font-size: 34px;
+  .project p,
+  .project > .container > .row > .col > p {
+    width: 95%;
+    font-size: 15px;
   }
 
+  /* Tab pills — go full width so they don't overflow */
+  .project .nav.nav-pills {
+    width: 100%;
+    border-radius: 14px;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .project .nav.nav-pills .nav-item {
+    width: 100%;
+  }
+
+  .project .nav.nav-pills .nav-link {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+
+  .nav-link#projects-tabs-tab-first {
+    border-radius: 14px 14px 0 0;
+  }
+
+  .nav-link#projects-tabs-tab-third {
+    border-radius: 0 0 14px 14px;
+  }
+
+  /* List project items — prevent horizontal overflow */
+  .proj-list-item {
+    padding: 16px 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .proj-list-left {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .proj-list-item h4 {
+    font-size: 15px;
+  }
+
+  .proj-list-arrow {
+    margin-left: 8px;
+  }
+
+  /* ── Contact ── */
   .contact {
-    padding: 60px 0 160px 0;
+    padding: 60px 0 100px 0;
+  }
+
+  .contact-header h2 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .contact-subtitle {
+    font-size: 15px;
+  }
+
+  .contact-card {
+    padding: 28px 20px;
+  }
+
+  .contact-info-card {
+    padding: 24px 18px;
+  }
+
+  /* ── Footer ── */
+  .footer img {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .footer p {
+    text-align: center;
   }
 }

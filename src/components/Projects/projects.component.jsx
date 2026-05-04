@@ -4,10 +4,17 @@ import colorSharp2 from "../../Assets/img/color-sharp2.png";
 import projImg2 from "../../Assets/img/project-img2.png";
 import projSkillNet from "../../Assets/img/project-skillnet.png";
 import projDR from "../../Assets/img/project-diabetic-retinopathy.png";
+import projFitAI from "../../Assets/img/project-fitai.png";
 import { motion } from "framer-motion";
 import TrackVisibility from 'react-on-screen';
 
 const cardProjects = [
+  {
+    title: "FitAI",
+    description: "AI-Powered Fitness Tracker — Microservices · Spring Boot · React · AWS",
+    imgUrl: projFitAI,
+    linkUrl: "https://github.com/01anirudh/FitAi",
+  },
   {
     title: "Crwn-Clothing",
     description: "Ecommerce Website",
